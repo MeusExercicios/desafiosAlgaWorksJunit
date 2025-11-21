@@ -11,7 +11,7 @@ public class RepositorioUsuario {
     public RepositorioUsuario() {
     }
 
-    Usuario buscarPorId(Long id) {
+    public Usuario buscarPorId(Long id) {
 
         if (usuario != null && usuario.getId().equals(id)) {
             return usuario;

@@ -4,11 +4,11 @@ public class UsuarioService {
 
     private final RepositorioUsuario repo;
 
-    UsuarioService(RepositorioUsuario repo) {
+    public UsuarioService(RepositorioUsuario repo) {
         this.repo = repo;
     }
 
-    String obterEmail(Long id) {
+    public String obterEmail(Long id) {
         return repo.buscarPorId(id).getEmail();
     }
 }
