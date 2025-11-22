@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,5 +36,28 @@ public class UsuarioServiceMockitoTest2 {
 
         verify(repoMock).buscarPorId(1L);
 
+    }
+
+
+    @Test
+    void dado_um_usuario_quando_sem_id_entao_deve_setar_id_e_retornar_o_usuario() {
+        Usuario usuario = new Usuario(null,"austin","austin@hotmail.com");
+
+        when(repoMock.salvar(any(Usuario.class))).thenAnswer(invocation ->{
+            Usuario u = invocation.getArgument(0);
+            u.setId(10L);
+            return u;
+        });
+
+
+        Usuario salvo = service.salvar(usuario);
+
+
+        assertNotNull(salvo.getId());
+        assertEquals(10L, salvo.getId());
+        assertEquals("austin", salvo.getNome());
+        assertEquals("austin@hotmail.com", salvo.getEmail());
+
+        verify(repoMock).salvar(any(Usuario.class));
     }
 }

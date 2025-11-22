@@ -9,10 +9,19 @@ public class UsuarioService {
     }
 
     public String obterEmail(Long id) {
-        Usuario  usuario = repo.buscarPorId(id);
+        Usuario usuario = repo.buscarPorId(id);
         if (usuario == null) {
             return null;
         }
         return usuario.getEmail();
     }
+
+    public Usuario salvar(Usuario usuario) {
+        if (usuario.getId() == null) {
+            return repo.salvar(usuario);
+        }
+
+        return usuario;
+    }
+
 }

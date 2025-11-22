@@ -18,4 +18,10 @@ public class RepositorioUsuario {
         }
         return null;
     }
+
+
+    public Usuario salvar(Usuario usuario) {
+        return usuario;
+    }
+
 }
